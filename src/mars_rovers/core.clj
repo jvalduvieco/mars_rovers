@@ -16,13 +16,16 @@
          [\S \L] [x y \E]
          [\E \L] [x y \N]
          ))
-(defn move-rover-with-limits [rover-state action [top-x top-y :as limits]]
+
+(defn move-rover-with-limits [[top-x top-y :as limits] rover-state action]
   (let [new-rover-state (move-rover rover-state action)
-        [x y direction] new-rover-state]
+        [x y _] new-rover-state]
     (if (and (>= top-x x 0) (>= top-y y 0)) new-rover-state rover-state)))
 
-(defn do-mission [[rover-state [commands] :as rover] map-limits]
-  (reduce (fn [rover-state action] (move-rover-with-limits rover-state action map-limits)) rover-state commands))
+(defn do-mission [map-limits [rover-state [commands] :as rover-data]]
+  (reduce
+    (partial move-rover-with-limits map-limits)
+    rover-state commands))
 
 (defn raw-input-data->rover-state-and-commands [rover-input-data]
   (partition 2 rover-input-data))
@@ -30,5 +33,5 @@
 (defn new-mission [raw-mission-input]
   (let [[map-limits & rover-raw-input-data] raw-mission-input]
     (map
-      (fn [rover-and-commands] (do-mission rover-and-commands map-limits))
+      (partial do-mission map-limits)
       (raw-input-data->rover-state-and-commands rover-raw-input-data))))
