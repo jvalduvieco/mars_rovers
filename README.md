@@ -1,5 +1,7 @@
 # mars_rovers
 
+[![Build Status](https://travis-ci.org/jvalduvieco/mars_rovers.svg?branch=master)](https://travis-ci.org/jvalduvieco/mars_rovers)
+
 A squad of robotic rovers are to be landed by NASA on a plateau on
 Mars. This plateau, which is curiously rectangular, must be navigated
 by the rovers so that their on-board cameras can get a complete
@@ -34,6 +36,7 @@ Moving.
 ## OUTPUT
 The output for each rover should be its final co-ordinates and
 heading.
+```
 INPUT AND OUTPUT
 Test Input:
 5 5
@@ -44,7 +47,7 @@ MMRMMRMRRM
 Expected Output:
 1 3 N
 5 1 E
-
+```
 ## Usage
 
 * [Install lein](http://leiningen.org/#install)
