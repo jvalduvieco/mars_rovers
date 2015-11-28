@@ -4,13 +4,13 @@
 
 (deftest supplied-example
   (testing "Supplied example is met"
-  (is (= (new-mission
-          '[[5 5]
-            [1 2 \N]
-            ["LMLMLMLMM"]
-            [3 3 \E]
-            ["MMRMMRMRRM"]])
-         '([1 3 \N] [5 1 \E])))))
+    (is (= (new-mission
+             '[[5 5]
+               [1 2 \N]
+               ["LMLMLMLMM"]
+               [3 3 \E]
+               ["MMRMMRMRRM"]])
+           '([1 3 \N] [5 1 \E])))))
 
 (deftest no-rovers
   (testing "No rovers, no results"
@@ -30,7 +30,7 @@
              '[[2 2]
                [6 6 \N]
                ["LMLMLMLMM"]])
-             '([6 6 \N])))))
+           '([6 6 \N])))))
 
 (deftest north-bound-is-enforced
   (testing "a rover can go beyond N bound"
@@ -80,3 +80,9 @@
                ["R"]])
            '([1 1 \E])))))
 
+(deftest invalid-command
+  (testing "Invalid command raises exception"
+    (is (thrown? IllegalArgumentException (doall (new-mission
+                                                      '[[2 2]
+                                                        [1 1 \N]
+                                                        ["Z"]]))))))
