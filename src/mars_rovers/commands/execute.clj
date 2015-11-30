@@ -1,6 +1,6 @@
 (ns mars-rovers.commands.execute
-  (:require [mars-rovers.commands.move :as m :refer [move-rover-with-limits]]
-            [mars-rovers.commands.rotate :as r :refer [rotate-rover]]))
+  (:require [mars-rovers.commands.move :as m]
+            [mars-rovers.commands.rotate :as r]))
 
 (defmulti execute-rover-command (fn [map rover-state command] command))
 

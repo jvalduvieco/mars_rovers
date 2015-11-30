@@ -1,5 +1,5 @@
 (ns mars-rovers.core
-  (:require [mars-rovers.commands.execute :as e :refer [execute-rover-command]]))
+  (:require [mars-rovers.commands.execute :as e]))
 
 (defn- encode-rover-data [{:keys [x y heading]}]
   [x y heading])
