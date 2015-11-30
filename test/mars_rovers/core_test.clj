@@ -80,6 +80,7 @@
                ["R"]])
            '([1 1 \E])))))
 
+; (doall) is necessary to force evaluation of lazy sequences as thrown? does not iterate over result
 (deftest invalid-command
   (testing "Invalid command raises exception"
     (is (thrown? IllegalArgumentException (doall (new-mission
