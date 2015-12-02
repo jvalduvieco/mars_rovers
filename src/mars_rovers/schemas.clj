@@ -6,12 +6,10 @@
 
 (def CardinalPoints
   (s/enum \N \E \S \W))
+
 (def RoverState
   {:x s/Int :y s/Int :heading CardinalPoints})
 
 (def RoverMission
   {:rover-state RoverState :commands s/Str})
-
-(def RawMapDefinition
-  [(s/one s/Int "max-x") (s/one s/Int "max-y")])
 
