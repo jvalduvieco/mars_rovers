@@ -13,5 +13,5 @@
 (defmethod execute-rover-command \R [map rover-state command]
   (r/rotate-rover map rover-state command))
 
-(defmethod execute-rover-command \Z [map rover-state command]
+(defmethod execute-rover-command :default [map rover-state command]
   (throw (IllegalArgumentException. "Invalid command.")))
