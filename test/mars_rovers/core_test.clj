@@ -18,11 +18,11 @@
              '[[5 5]])
            '()))))
 
+; (doall) is necessary to force evaluation of lazy sequences as thrown? does not iterate over result
 (deftest no-data
-  (testing "No data, no results, no errors"
-    (is (= (new-mission
-             '[])
-           '()))))
+  (testing "No data, Exception"
+    (is (thrown? clojure.lang.ExceptionInfo (doall (new-mission
+                                                     '[]))))))
 
 (deftest rover-starts-outside-bounds
   (testing "A rover starting outside bounds does not move"
@@ -80,7 +80,6 @@
                ["R"]])
            '([1 1 \E])))))
 
-; (doall) is necessary to force evaluation of lazy sequences as thrown? does not iterate over result
 (deftest invalid-command
   (testing "Invalid command raises exception"
     (is (thrown? IllegalArgumentException (doall (new-mission
